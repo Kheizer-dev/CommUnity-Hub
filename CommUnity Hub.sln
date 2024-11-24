@@ -1,0 +1,27 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.11.35327.3
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommUnity Hub", "CommUnity Hub.csproj", "{EFAEE667-B864-4B2D-91A1-24A0BF17ECCA}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EFAEE667-B864-4B2D-91A1-24A0BF17ECCA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EFAEE667-B864-4B2D-91A1-24A0BF17ECCA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EFAEE667-B864-4B2D-91A1-24A0BF17ECCA}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{EFAEE667-B864-4B2D-91A1-24A0BF17ECCA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EFAEE667-B864-4B2D-91A1-24A0BF17ECCA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EFAEE667-B864-4B2D-91A1-24A0BF17ECCA}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {E2DE7EE1-51A1-4E08-AC7F-48EBB94FF51F}
+	EndGlobalSection
+EndGlobal

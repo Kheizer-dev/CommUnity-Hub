@@ -1,0 +1,92 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CommUnity_Hub.BlotterReportsPage"
+             Title="Blotter Reports Management"
+             BackgroundColor="#F7F9FC">
+
+    <ContentPage.Content>
+        <Grid>
+            <ScrollView>
+                <StackLayout Padding="20" Spacing="20">
+
+                    <!-- Page Header -->
+                    <Label Text="Blotter Reports"
+                           FontSize="Header"
+                           FontAttributes="Bold"
+                           FontFamily="Segoe UI"
+                           HorizontalOptions="Center"
+                           TextColor="#2C3E50"
+                           Margin="0,20,0,10"/>
+
+                    <!-- Button Container -->
+                    <HorizontalStackLayout HorizontalOptions="EndAndExpand" Spacing="10">
+                        <Button Text="Add Blotter"
+                                FontSize="18"
+                                BackgroundColor="#28a745"
+                                TextColor="White"
+                                Clicked="OnAddNewBlotterReportClicked"
+                                CornerRadius="20"
+                                Padding="10,5"
+                                HorizontalOptions="EndAndExpand"/>
+                        <Button Text="Refresh"
+                                FontSize="18"
+                                BackgroundColor="#007bff"
+                                TextColor="White"
+                                Clicked="OnRefreshClicked"
+                                CornerRadius="20"
+                                Padding="10,5"
+                                HorizontalOptions="EndAndExpand"/>
+                    </HorizontalStackLayout>
+
+                    <!-- Search Bar -->
+                    <SearchBar x:Name="BlotterSearchBar"
+                               Placeholder="Search reports by keyword or case ID..."
+                               TextChanged="OnSearchBarTextChanged"
+                               FontSize="16"
+                               Margin="0,10,0,10"
+                               BackgroundColor="#FFFFFF"
+                               TextColor="#333"
+                               PlaceholderColor="#888"/>
+
+                    <!-- Blotter Report List -->
+                    <CollectionView x:Name="BlotterListView"
+                                    Margin="0,10,0,10"
+                                    SelectionMode="Single"
+                                    SelectionChanged="OnReportSelected">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <Frame Padding="15"
+                                       Margin="0,5"
+                                       BackgroundColor="White"
+                                       CornerRadius="12"
+                                       HasShadow="True">
+                                    <StackLayout Spacing="5">
+                                        <Label Text="{Binding CaseID}" 
+                                               FontSize="20" 
+                                               FontAttributes="Bold"
+                                               TextColor="#4CAF50"/>
+                                        <Label Text="{Binding IncidentDetails}" 
+                                               FontSize="16"
+                                               TextColor="#333"/>
+                                        <Label Text="{Binding Location}" 
+                                               FontSize="14" 
+                                               TextColor="DarkGray" />
+                                        <Label Text="{Binding PartiesInvolved}" 
+                                               FontSize="14" 
+                                               TextColor="DarkGray" />
+                                        <Label Text="{Binding Evidence}" 
+                                               FontSize="14" 
+                                               TextColor="DarkGray" />
+                                        <Label Text="{Binding DateReported, StringFormat='Reported: {0:MMM dd, yyyy}'}" 
+                                               FontSize="12" 
+                                               TextColor="Gray"/>
+                                    </StackLayout>
+                                </Frame>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

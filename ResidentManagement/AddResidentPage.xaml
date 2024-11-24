@@ -1,0 +1,164 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CommUnity_Hub.AddResidentPage"
+             BackgroundColor="#F7F7F7">
+
+    <ContentPage.Content>
+        <Grid>
+            <!-- Background Image -->
+            <Image Source="barangay_seselangen_logo.png"
+                   Aspect="AspectFill"
+                   Opacity="0.5"
+                   IsVisible="True"/>
+
+            <ScrollView>
+                <StackLayout Padding="20" Spacing="15">
+                    <Label Text="Add New Resident"
+                           FontFamily="Segoe UI"
+                           FontSize="28"
+                           FontAttributes="Bold"
+                           HorizontalOptions="Center"
+                           TextColor="#333333" 
+                           Margin="0,20,0,20"/>
+
+                    <!-- Frame for Entry fields -->
+                    <Frame Padding="10" BackgroundColor="White" CornerRadius="10" HasShadow="True" WidthRequest="700" Opacity="0.9">
+                        <StackLayout Spacing="10">
+                            <!-- Name Fields -->
+                            <Entry x:Name="FirstNameEntry"
+                                   Placeholder="First Name"
+                                   FontSize="16"
+                                   HorizontalOptions="FillAndExpand"
+                                   BackgroundColor="#EAEAEA"/>
+
+                            <Entry x:Name="MiddleNameEntry"
+                                   Placeholder="Middle Name"
+                                   FontSize="16"
+                                   HorizontalOptions="FillAndExpand"
+                                   BackgroundColor="#EAEAEA"/>
+
+                            <Entry x:Name="LastNameEntry"
+                                   Placeholder="Last Name"
+                                   FontSize="16"
+                                   HorizontalOptions="FillAndExpand"
+                                   BackgroundColor="#EAEAEA"/>
+
+                            <!-- Date of Birth -->
+                            <Label Text="Date of Birth:"
+                                   FontSize="16"/>
+                            <DatePicker x:Name="DateOfBirthPicker"
+                                        FontSize="16"
+                                        HorizontalOptions="FillAndExpand"/>
+
+                            <!-- Gender -->
+                            <Picker x:Name="GenderPicker"
+                                    Title="Select Gender"
+                                    FontSize="16"
+                                    HorizontalOptions="FillAndExpand"
+                                    BackgroundColor="#EAEAEA">
+                                <Picker.Items>
+                                    <x:String>Male</x:String>
+                                    <x:String>Female</x:String>
+                                </Picker.Items>
+                            </Picker>
+
+                            <!-- Address -->
+                            <Entry x:Name="AddressEntry"
+                                   Placeholder="Address"
+                                   FontSize="16"
+                                   HorizontalOptions="FillAndExpand"
+                                   BackgroundColor="#EAEAEA"/>
+
+                            <!-- Contact Number -->
+                            <Entry x:Name="ContactNumberEntry"
+                                   Placeholder="Contact Number"
+                                   Keyboard="Telephone"
+                                   FontSize="16"
+                                   HorizontalOptions="FillAndExpand"
+                                   BackgroundColor="#EAEAEA"/>
+
+                            <!-- Civil Status -->
+                            <Picker x:Name="CivilStatusPicker"
+                                    Title="Select Civil Status"
+                                    FontSize="16"
+                                    HorizontalOptions="FillAndExpand"
+                                    BackgroundColor="#EAEAEA">
+                                <Picker.Items>
+                                    <x:String>Single</x:String>
+                                    <x:String>Married</x:String>
+                                    <x:String>Widowed</x:String>
+                                    <x:String>Separated</x:String>
+                                    <x:String>Divorced</x:String>
+                                </Picker.Items>
+                            </Picker>
+
+                            <StackLayout>
+                                <!-- Nationality Picker -->
+                                <Picker x:Name="NationalityPicker"
+                                        Title="Select Nationality"
+                                        FontSize="16"
+                                        HorizontalOptions="FillAndExpand"
+                                        BackgroundColor="#EAEAEA"
+                                        SelectedIndexChanged="OnNationalityPickerSelectedIndexChanged">
+                                    <Picker.Items>
+                                        <x:String>Filipino</x:String>
+                                        <x:String>American</x:String>
+                                        <x:String>Japanese</x:String>
+                                        <x:String>Others</x:String>
+                                    </Picker.Items>
+                                </Picker>
+
+                                <!-- Entry for Other Nationality -->
+                                <Entry x:Name="OtherNationalityEntry"
+                                       Placeholder="Enter nationality"
+                                       FontSize="16"
+                                       IsVisible="False"
+                                       HorizontalOptions="FillAndExpand"
+                                       BackgroundColor="#EAEAEA" />
+                            </StackLayout>
+
+                            <!-- Religion -->
+                            <Entry x:Name="ReligionEntry"
+                                   Placeholder="Religion (Optional)"
+                                   FontSize="16"
+                                   HorizontalOptions="FillAndExpand"
+                                   BackgroundColor="#EAEAEA"/>
+
+                            <!-- Occupation -->
+                            <Entry x:Name="OccupationEntry"
+                                   Placeholder="Occupation"
+                                   FontSize="16"
+                                   HorizontalOptions="FillAndExpand"
+                                   BackgroundColor="#EAEAEA"/>
+
+                            <!-- Educational Attainment -->
+                            <Picker x:Name="EducationPicker"
+                                    Title="Select Educational Attainment"
+                                    FontSize="16"
+                                    HorizontalOptions="FillAndExpand"
+                                    BackgroundColor="#EAEAEA">
+                                <Picker.Items>
+                                    <x:String>None</x:String>
+                                    <x:String>Elementary</x:String>
+                                    <x:String>High School</x:String>
+                                    <x:String>Vocational</x:String>
+                                    <x:String>College</x:String>
+                                    <x:String>Post-Graduate</x:String>
+                                </Picker.Items>
+                            </Picker>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Add Resident Button -->
+                    <Button Text="Add Resident"
+                            BackgroundColor="#4CAF50"
+                            TextColor="White"
+                            FontSize="16"
+                            CornerRadius="10"
+                            WidthRequest="700"
+                            Clicked="OnAddClicked"/>
+                </StackLayout>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

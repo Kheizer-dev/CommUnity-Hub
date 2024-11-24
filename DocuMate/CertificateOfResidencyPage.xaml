@@ -1,0 +1,92 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CommUnity_Hub.CertificateOfResidencyPage"
+             Title="Certificate of Residency"
+             BackgroundColor="#EAEAEA">
+
+    <ContentPage.Content>
+        <Grid>
+            <Image Source="barangay_seselangen_logo.png"
+                   Aspect="AspectFill"
+                   Opacity="0.5"/>
+            <ScrollView>
+                <Frame CornerRadius="12"
+                       BackgroundColor="White"
+                       HasShadow="True"
+                       Padding="20"
+                       Margin="20"
+                       WidthRequest="800">
+
+                    <StackLayout Spacing="20">
+
+                        <!-- Header with modern styling -->
+                        <Label Text="Certificate of Residency"
+                               FontSize="32"
+                               FontAttributes="Bold"
+                               TextColor="#1C1C1E"
+                               HorizontalOptions="Center"
+                               Margin="0,0,0,10"/>
+
+                        <!-- Resident Name -->
+                        <Entry x:Name="ResidentNameEntry"
+                               Placeholder="Enter Resident Name"
+                               FontSize="18"
+                               TextColor="#333"
+                               PlaceholderColor="#888"
+                               BackgroundColor="#F8F8F8"/>
+
+                        <!-- Civil Status -->
+                        <Entry x:Name="CivilStatusEntry"
+                               Placeholder="Enter Civil Status"
+                               FontSize="18"
+                               TextColor="#333"
+                               PlaceholderColor="#888"
+                               BackgroundColor="#F8F8F8"/>
+
+                        <!-- Nationality -->
+                        <Entry x:Name="NationalityEntry"
+                               Placeholder="Enter Nationality"
+                               FontSize="18"
+                               TextColor="#333"
+                               PlaceholderColor="#888"
+                               BackgroundColor="#F8F8F8"/>
+
+                        <!-- Address -->
+                        <Entry x:Name="AddressEntry"
+                               Placeholder="Enter Address"
+                               FontSize="18"
+                               TextColor="#333"
+                               PlaceholderColor="#888"
+                               BackgroundColor="#F8F8F8"/>
+
+                        <!-- Duration of Residency -->
+                        <Entry x:Name="DurationEntry"
+                               Placeholder="Duration of Residency (e.g., Since 2020)"
+                               FontSize="18"
+                               TextColor="#333"
+                               PlaceholderColor="#888"
+                               BackgroundColor="#F8F8F8"/>
+
+                        <!-- Purpose -->
+                        <Entry x:Name="PurposeEntry"
+                               Placeholder="Enter Purpose of Certificate"
+                               FontSize="18"
+                               TextColor="#333"
+                               PlaceholderColor="#888"
+                               BackgroundColor="#F8F8F8"/>
+
+                        <!-- Generate Button -->
+                        <Button Text="Generate Certificate"
+                                BackgroundColor="#228b22"
+                                TextColor="White"
+                                FontSize="20"
+                                HorizontalOptions="FillAndExpand"
+                                CornerRadius="10"
+                                Padding="15"
+                                Clicked="OnGenerateClicked"/>
+                    </StackLayout>
+                </Frame>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

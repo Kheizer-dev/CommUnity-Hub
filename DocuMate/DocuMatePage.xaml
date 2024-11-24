@@ -1,0 +1,82 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CommUnity_Hub.DocuMatePage"
+             BackgroundColor="#f5f5f5">
+
+    <ContentPage.Content>
+        <Grid Padding="20">
+            <Image Source="barangay_seselangen_logo.png"
+                   Aspect="AspectFill"
+                   Opacity="0.5"/>
+            <!-- Main container with rounded corners and shadow -->
+            <Frame CornerRadius="15"
+                   BackgroundColor="White"
+                   HasShadow="True"
+                   Padding="20"
+                   HorizontalOptions="FillAndExpand"
+                   VerticalOptions="Center"
+                   WidthRequest="900">
+
+                <StackLayout Spacing="20">
+
+                    <!-- Header with modern styling -->
+                    <Label Text="DocuMate: Document Handling"
+                           FontSize="32"
+                           FontAttributes="Bold"
+                           FontFamily="Segoe UI"
+                           TextColor="#2C3E50"
+                           HorizontalOptions="Center"/>
+
+                    <!-- Picker with modern styling -->
+                    <Frame CornerRadius="10" HasShadow="True" BackgroundColor="#ffffff" Padding="5">
+                        <Picker x:Name="DocumentTypePicker"
+                                Title="Select Document Type"
+                                TitleColor="#999"
+                                FontSize="20"
+                                TextColor="#333"
+                                BackgroundColor="Transparent"
+                                HorizontalOptions="FillAndExpand"
+                                Margin="0">
+                            <Picker.ItemsSource>
+                                <x:Array Type="{x:Type x:String}">
+                                    <x:String>Barangay Clearance</x:String>
+                                    <x:String>Certificate of Residency</x:String>
+                                    <x:String>Business Permit</x:String>
+                                </x:Array>
+                            </Picker.ItemsSource>
+                        </Picker>
+                    </Frame>
+
+                    <!-- Buttons styled with gradient backgrounds -->
+                    <Button Text="Create Document"
+                            FontSize="20"
+                            BackgroundColor="#007BFF"
+                            TextColor="White"
+                            CornerRadius="25"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center"
+                            Clicked="OnCreateButtonClicked"/>
+
+                    <Button Text="View Generated Documents"
+                            FontSize="20"
+                            BackgroundColor="#28a745"
+                            TextColor="White"
+                            CornerRadius="25"
+                            HeightRequest="50"
+                            HorizontalOptions="FillAndExpand"
+                            VerticalOptions="Center"
+                            Clicked="OnViewGeneratedDocumentsClicked"/>
+
+                    <!-- Additional Information Section -->
+                    <Label Text="Manage your documents with ease."
+                           FontSize="16"
+                           TextColor="#666"
+                           HorizontalOptions="Center"
+                           HorizontalTextAlignment="Center"/>
+
+                </StackLayout>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

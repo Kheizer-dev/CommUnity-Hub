@@ -1,0 +1,90 @@
+<Shell
+    x:Class="CommUnity_Hub.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:CommUnity_Hub"
+    Title="CommUnity Hub">
+
+    <!-- Flyout Header with User Info -->
+    <Shell.FlyoutHeader>
+        <Grid Padding="10" BackgroundColor="#eeeeee">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+
+            <StackLayout Padding="10" Spacing="20">
+                <!-- User Profile Image -->
+                <Frame WidthRequest="80" 
+                       HeightRequest="80" 
+                       CornerRadius="100" 
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Center" 
+                       Padding="0" 
+                       IsClippedToBounds="True"
+                       HasShadow="True"
+                       BorderColor="Black">
+                    <Image Source="{Binding ProfileImage}" 
+                           WidthRequest="80" 
+                           HeightRequest="80" 
+                           Aspect="AspectFill" />
+                </Frame>
+            </StackLayout>
+
+            <!-- User Info Text -->
+            <StackLayout Grid.Column="1" Padding="10,0" VerticalOptions="Center">
+                <Label Text="Welcome!!" FontSize="20" FontAttributes="Italic" TextColor="Black"/>
+                <Label Text="{Binding Name}" 
+                       FontSize="16" 
+                       FontAttributes="Bold"
+                       TextColor="Black"/>
+            </StackLayout>
+        </Grid>
+    </Shell.FlyoutHeader>
+
+    <!-- Main Login Page (no flyout here) -->
+    <ShellContent
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Route="LoginPage"
+        Shell.FlyoutBehavior="Disabled"
+        Shell.FlyoutItemIsVisible="False"/>
+
+    <FlyoutItem Title="Profile" Icon="profile_icon.png">
+        <ShellContent ContentTemplate="{DataTemplate local:ProfilePage}"/>
+    </FlyoutItem>
+
+    <!-- Authenticated Flow with Flyout -->
+    <FlyoutItem Title="Dashboard" Icon="dashboard_icon.png" FlyoutDisplayOptions="AsSingleItem">
+        <ShellContent
+            ContentTemplate="{DataTemplate local:DashBoardPage}"
+            Route="DashboardPage"/>
+    </FlyoutItem>
+
+    <!-- Other Flyout Menu Items -->
+    <FlyoutItem Title="Event Creation" Icon="event_icon.png">
+        <ShellContent ContentTemplate="{DataTemplate local:EventCreationPage}" Route="EventCreationPage" />
+    </FlyoutItem>
+    
+    <FlyoutItem Title="Resident Management" Icon="resident_management_icon.png">
+        <ShellContent ContentTemplate="{DataTemplate local:ResidentManagementPage}"/>
+    </FlyoutItem>
+
+    <FlyoutItem Title="DocuMate" Icon="document_management_icon.png">
+        <ShellContent ContentTemplate="{DataTemplate local:DocuMatePage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Blotter Reports" Icon="blotter_reports_icon.png">
+        <ShellContent ContentTemplate="{DataTemplate local:BlotterReportsPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Payment Processing" Icon="payment_processing_icon.png">
+        <ShellContent ContentTemplate="{DataTemplate local:PaymentProcessingPage}" />
+    </FlyoutItem>
+
+    <FlyoutItem Title="Emergency Hotlines" Icon="emergency_icon.png">
+        <ShellContent ContentTemplate="{DataTemplate local:EmergencyHotlinesPage}"/>
+    </FlyoutItem>
+
+    <!-- Logout -->
+    <MenuItem Text="Logout" IconImageSource="logout_icon.png" Clicked="OnLogoutClicked"/>
+</Shell>

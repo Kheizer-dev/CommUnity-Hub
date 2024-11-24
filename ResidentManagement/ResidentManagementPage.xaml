@@ -1,0 +1,162 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CommUnity_Hub.ResidentManagementPage"
+             BackgroundColor="#f0f4f8">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="10">
+                <Label Text="Resident Management"
+                       TextColor="#007acc"
+                       FontSize="Header"
+                       FontFamily="Segoe UI"
+                       FontAttributes="Bold"
+                       HorizontalOptions="Center"
+                       Margin="0,20,0,10"/>
+
+                <!-- Combined Pickers and Buttons Layout -->
+                <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*,Auto">
+                    <!-- Left Stack: Pickers -->
+                    <HorizontalStackLayout Grid.Column="0" HorizontalOptions="StartAndExpand" Spacing="10">
+                        <Picker x:Name="EntriesPerPagePicker"
+                                Title="Show Entries"
+                                SelectedIndexChanged="OnEntriesPerPageChanged"
+                                BackgroundColor="#FFFFFF"
+                                TextColor="#333333"
+                                WidthRequest="90"
+                                Margin="0,0,0,10"
+                                HorizontalOptions="StartAndExpand"
+                                HorizontalTextAlignment="Center">
+                            <Picker.Items>
+                                <x:String>5</x:String>
+                                <x:String>10</x:String>
+                                <x:String>20</x:String>
+                            </Picker.Items>
+                        </Picker>
+
+                        <Picker x:Name="SortOrderPicker"
+                                Title="Sort By"
+                                SelectedIndexChanged="OnSortOrderChanged"
+                                BackgroundColor="#FFFFFF"
+                                TextColor="#333333"
+                                WidthRequest="150"
+                                Margin="0,0,0,10"
+                                HorizontalOptions="StartAndExpand"
+                                HorizontalTextAlignment="Start">
+                            <Picker.Items>
+                                <x:String>Last Name (A-Z)</x:String>
+                                <x:String>Last Name (Z-A)</x:String>
+                                <x:String>First Name (A-Z)</x:String>
+                                <x:String>First Name (Z-A)</x:String>
+                                <x:String>Resident ID (Ascending)</x:String>
+                                <x:String>Resident ID (Descending)</x:String>
+                            </Picker.Items>
+                        </Picker>
+                    </HorizontalStackLayout>
+
+                    <!-- Right Stack: Action Buttons -->
+                    <HorizontalStackLayout Grid.Column="1" HorizontalOptions="EndAndExpand" Spacing="10">
+                        <Button Text="Add Resident"
+                                BackgroundColor="#28a745"
+                                TextColor="White"
+                                FontSize="14"
+                                CornerRadius="20"
+                                Padding="8"
+                                Clicked="OnAddResidentClicked"
+                                HorizontalOptions="EndAndExpand"
+                                HeightRequest="10"/>
+                        <Button Text="Refresh"
+                                BackgroundColor="#007acc"
+                                TextColor="White"
+                                FontSize="14"
+                                CornerRadius="20"
+                                Padding="8"
+                                Clicked="OnRefreshClicked"
+                                HorizontalOptions="EndAndExpand"
+                                HeightRequest="10"/>
+                    </HorizontalStackLayout>
+                </Grid>
+
+
+                <!-- Search Bar -->
+                <SearchBar x:Name="ResidentSearchBar"
+                           Placeholder="Search residents..."
+                           PlaceholderColor="#888888"
+                           BackgroundColor="#FFFFFF"
+                           TextColor="#333333"
+                           FontSize="14"
+                           Margin="0,10,0,10"
+                           TextChanged="OnSearchTextChanged"
+                           HorizontalOptions="FillAndExpand"/>
+
+                <!-- CollectionView for Residents -->
+                <CollectionView x:Name="ResidentsCollectionView"
+                                Margin="0,20,0,0"
+                                BackgroundColor="Transparent"
+                                SelectionMode="Single"
+                                SelectionChanged="OnResidentSelected">
+                    <CollectionView.Header>
+                        <StackLayout Orientation="Horizontal" Padding="5,10" BackgroundColor="#e8f0fe">
+                            <Label Text="Last Name" FontAttributes="Bold" FontSize="14" TextColor="#555555" WidthRequest="150"/>
+                            <Label Text="First Name" FontAttributes="Bold" FontSize="14" TextColor="#555555" WidthRequest="150"/>
+                            <Label Text="Middle Name" FontAttributes="Bold" FontSize="14" TextColor="#555555" WidthRequest="150"/>
+                            <Label Text="Address" FontAttributes="Bold" FontSize="14" TextColor="#555555" WidthRequest="200"/>
+                            <Label Text="Contact Number" FontAttributes="Bold" FontSize="14" TextColor="#555555" WidthRequest="150"/>
+                            <Label Text="Date of Birth" FontAttributes="Bold" FontSize="14" TextColor="#555555" WidthRequest="150"/>
+                            <Label Text="ID" FontAttributes="Bold" FontSize="14" TextColor="#555555" WidthRequest="100"/>
+                        </StackLayout>
+                    </CollectionView.Header>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid Padding="5" BackgroundColor="#FFFFFF" Margin="0,5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="200"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="Auto"/>
+                                </Grid.ColumnDefinitions>
+
+                                <Label Grid.Column="0" Text="{Binding LastName}" FontSize="14" TextColor="#333333"/>
+                                <Label Grid.Column="1" Text="{Binding FirstName}" FontSize="14" TextColor="#333333"/>
+                                <Label Grid.Column="2" Text="{Binding MiddleName}" FontSize="14" TextColor="#333333"/>
+                                <Label Grid.Column="3" Text="{Binding Address}" FontSize="14" TextColor="#666666"/>
+                                <Label Grid.Column="4" Text="{Binding ContactNumber}" FontSize="14" TextColor="#666666"/>
+                                <Label Grid.Column="5" Text="{Binding DateOfBirth, StringFormat='{0:MM/dd/yyyy}'}" FontSize="14" TextColor="#666666"/>
+                                <Label Grid.Column="6" Text="{Binding Id}" FontSize="14" TextColor="#666666"/>
+                                <!-- Icon for blotter indication -->
+                                <Image Grid.Column="7"
+                                       Source="blotter_icon.png" 
+                                       WidthRequest="24" 
+                                       HeightRequest="24" 
+                                       IsVisible="{Binding HasBlotter}"/>
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <!-- Pagination Controls -->
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10" Margin="0,15,0,0">
+                    <Button Text="Previous"
+                            BackgroundColor="#007acc"
+                            TextColor="White"
+                            FontSize="14"
+                            CornerRadius="8"
+                            Padding="8"
+                            Clicked="OnPreviousPageClicked"/>
+                    <Label x:Name="PageLabel" Text="Page 1" FontSize="14" TextColor="#555555" VerticalOptions="Center"/>
+                    <Button Text="Next"
+                            BackgroundColor="#007acc"
+                            TextColor="White"
+                            FontSize="14"
+                            CornerRadius="8"
+                            Padding="8"
+                            Clicked="OnNextPageClicked"/>
+                </HorizontalStackLayout>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

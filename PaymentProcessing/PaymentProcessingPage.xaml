@@ -1,0 +1,76 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CommUnity_Hub.PaymentProcessingPage"
+             BackgroundColor="#F5F5F5">
+    <!-- Light background for a modern look -->
+
+    <ContentPage.Content>
+        <ScrollView>
+            <StackLayout Padding="20" Spacing="20">
+                <!-- Header -->
+                <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10">
+                    <Label Text="Payment Processing"
+                           FontSize="Header"
+                           FontAttributes="Bold"
+                           FontFamily="Segoe UI"
+                           HorizontalOptions="StartAndExpand"
+                           TextColor="#333333"/>
+                    <Button Text="Refresh"
+                            BackgroundColor="#007acc"
+                            TextColor="White"
+                            FontAttributes="Bold"
+                            CornerRadius="20"
+                            Padding="10,5"
+                            HorizontalOptions="EndAndExpand"
+                            VerticalOptions="CenterAndExpand"
+                            Clicked="OnRefreshButtonClicked"/>
+                </StackLayout>
+
+                <!-- CollectionView for Payment Documents -->
+                <CollectionView x:Name="DocumentsCollectionView"
+                                ItemsSource="{Binding PaymentDocuments}"
+                                SelectionMode="Single"
+                                SelectionChanged="OnDocumentSelected"
+                                Margin="0,10">
+                    <CollectionView.ItemsLayout>
+                        <LinearItemsLayout ItemSpacing="5" Orientation="Vertical"/>
+                    </CollectionView.ItemsLayout>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Frame BackgroundColor="White"
+                                   BorderColor="#E0E0E0"
+                                   CornerRadius="10"
+                                   Padding="20"
+                                   Margin="5"
+                                   HasShadow="True">
+                                <StackLayout>
+                                    <Label Text="{Binding DocumentName}"
+                                           FontSize="22"
+                                           FontAttributes="Bold"
+                                           TextColor="#007acc"/>
+                                    <Label Text="{Binding PaymentAmount, StringFormat='Amount Due: {0:C}'}"
+                                           FontSize="18"
+                                           TextColor="Gray"/>
+                                    <Label Text="{Binding DueDate, StringFormat='Due by: {0:MMMM dd, yyyy}'}"
+                                           FontSize="18"
+                                           TextColor="Gray"/>
+                                    <Label Text="{Binding Status}" 
+                                           TextColor="{Binding Status, Converter={StaticResource PaymentDocument}}"
+                                           FontSize="16"
+                                           FontAttributes="Italic"/>
+                                </StackLayout>
+                            </Frame>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                    <CollectionView.EmptyView>
+                        <Label Text="No payment documents available."
+                               HorizontalOptions="Center"
+                               VerticalOptions="Center"
+                               FontSize="20"
+                               TextColor="Gray"/>
+                    </CollectionView.EmptyView>
+                </CollectionView>
+            </StackLayout>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

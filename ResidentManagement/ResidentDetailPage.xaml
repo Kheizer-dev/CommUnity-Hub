@@ -1,0 +1,135 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CommUnity_Hub.ResidentDetailPage"
+             BackgroundColor="#F8F9FA">
+    <ContentPage.Content>
+        <AbsoluteLayout>
+            <!-- Background Image -->
+            <Image Source="barangay_seselangen_logo.png"
+                   Aspect="AspectFill"
+                   Opacity="0.1"
+                    AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                   AbsoluteLayout.LayoutFlags="All" />
+
+                <ScrollView AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+                         AbsoluteLayout.LayoutFlags="All">
+                    <StackLayout Padding="20" Spacing="20">
+                        <Label Text="Resident Details"
+                           FontSize="34"
+                           FontAttributes="Bold"
+                           FontFamily="Segoe UI"
+                           HorizontalOptions="Center"
+                           TextColor="#2C3E50" />
+
+                        <Frame BackgroundColor="White"
+                           CornerRadius="10"
+                           HasShadow="True"
+                           Padding="20"
+                           WidthRequest="700">
+                            <Grid RowSpacing="15" ColumnSpacing="10">
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                    <RowDefinition Height="Auto" />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="140" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Text="First Name:" Grid.Row="0" Grid.Column="0" FontAttributes="Bold"/>
+                                <Entry Text="{Binding FirstName}" Grid.Row="0" Grid.Column="1" Placeholder="Enter first name" BackgroundColor="#ECF0F1"/>
+
+                                <Label Text="Middle Name:" Grid.Row="1" Grid.Column="0" FontAttributes="Bold"/>
+                                <Entry Text="{Binding MiddleName}" Grid.Row="1" Grid.Column="1" Placeholder="Enter middle initial" BackgroundColor="#ECF0F1"/>
+
+                                <Label Text="Last Name:" Grid.Row="2" Grid.Column="0" FontAttributes="Bold"/>
+                                <Entry Text="{Binding LastName}" Grid.Row="2" Grid.Column="1" Placeholder="Enter last name" BackgroundColor="#ECF0F1"/>
+
+                                <Label Text="Address:" Grid.Row="3" Grid.Column="0" FontAttributes="Bold"/>
+                                <Entry Text="{Binding Address}" Grid.Row="3" Grid.Column="1" Placeholder="Enter address" BackgroundColor="#ECF0F1"/>
+
+                                <Label Text="Contact Number:" Grid.Row="4" Grid.Column="0" FontAttributes="Bold"/>
+                                <Entry Text="{Binding ContactNumber}" Grid.Row="4" Grid.Column="1" Placeholder="Enter contact number" BackgroundColor="#ECF0F1"/>
+
+                                <Label Text="Date of Birth:" Grid.Row="5" Grid.Column="0" FontAttributes="Bold"/>
+                                <DatePicker Date="{Binding DateOfBirth}" Grid.Row="5" Grid.Column="1" BackgroundColor="#ECF0F1"/>
+
+                                <Label Text="Gender:" Grid.Row="6" Grid.Column="0" FontAttributes="Bold"/>
+                                <Picker SelectedItem="{Binding Gender}" Grid.Row="6" Grid.Column="1" BackgroundColor="#ECF0F1">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Male</x:String>
+                                            <x:String>Female</x:String>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+
+                                <Label Text="Civil Status:" Grid.Row="7" Grid.Column="0" FontAttributes="Bold"/>
+                                <Picker SelectedItem="{Binding CivilStatus}" Grid.Row="7" Grid.Column="1" BackgroundColor="#ECF0F1">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Single</x:String>
+                                            <x:String>Married</x:String>
+                                            <x:String>Widowed</x:String>
+                                            <x:String>Separated</x:String>
+                                            <x:String>Divorced</x:String>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+
+                                <Label Text="Nationality:" Grid.Row="8" Grid.Column="0" FontAttributes="Bold"/>
+                                <Entry Text="{Binding Nationality}" Grid.Row="8" Grid.Column="1" Placeholder="Enter nationality" BackgroundColor="#ECF0F1"/>
+
+                                <Label Text="Religion:" Grid.Row="9" Grid.Column="0" FontAttributes="Bold"/>
+                                <Entry Text="{Binding Religion}" Grid.Row="9" Grid.Column="1" Placeholder="Enter religion" BackgroundColor="#ECF0F1"/>
+
+                                <Label Text="Occupation:" Grid.Row="10" Grid.Column="0" FontAttributes="Bold"/>
+                                <Entry Text="{Binding Occupation}" Grid.Row="10" Grid.Column="1" Placeholder="Enter occupation" BackgroundColor="#ECF0F1"/>
+
+                                <Label Text="Educational Attainment:" Grid.Row="11" Grid.Column="0" FontAttributes="Bold"/>
+                                <Picker SelectedItem="{Binding EducationalAttainment}" Grid.Row="11" Grid.Column="1" BackgroundColor="#ECF0F1">
+                                    <Picker.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>None</x:String>
+                                            <x:String>Elementary</x:String>
+                                            <x:String>High School</x:String>
+                                            <x:String>Vocational</x:String>
+                                            <x:String>College</x:String>
+                                            <x:String>Post-Graduate</x:String>
+                                        </x:Array>
+                                    </Picker.ItemsSource>
+                                </Picker>
+                            </Grid>
+                        </Frame>
+
+                        <HorizontalStackLayout Spacing="20" HorizontalOptions="Center">
+                            <Button Text="Save"
+                                Clicked="OnSaveClicked"
+                                BackgroundColor="#4CAF50"
+                                TextColor="White"
+                                CornerRadius="5"
+                                Padding="15,10"
+                                FontAttributes="Bold" />
+                            <Button Text="Delete"
+                                Clicked="OnDeleteClicked"
+                                BackgroundColor="#F44336"
+                                TextColor="White"
+                                CornerRadius="5"
+                                Padding="15,10"
+                                FontAttributes="Bold" />
+                        </HorizontalStackLayout>
+                    </StackLayout>
+                </ScrollView>
+        </AbsoluteLayout>
+    </ContentPage.Content>
+</ContentPage>

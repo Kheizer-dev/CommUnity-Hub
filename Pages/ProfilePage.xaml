@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:local="clr-namespace:CommUnityHub"
+             x:Class="CommUnity_Hub.ProfilePage"
+             Title="Profile Management"
+             BackgroundColor="#F9F9F9">
+
+    <ContentPage.Resources>
+        <Style TargetType="Button">
+            <Setter Property="BackgroundColor" Value="#3F51B5" />
+            <Setter Property="TextColor" Value="White" />
+            <Setter Property="CornerRadius" Value="10" />
+            <Setter Property="Padding" Value="10,5" />
+        </Style>
+        <Style TargetType="Entry">
+            <Setter Property="BackgroundColor" Value="White" />
+            <Setter Property="PlaceholderColor" Value="#B0B0B0" />
+            <Setter Property="Margin" Value="0,5" />
+        </Style>
+    </ContentPage.Resources>
+
+    <ScrollView>
+        <StackLayout Padding="20" Spacing="15" VerticalOptions="CenterAndExpand" WidthRequest="700">
+            <!-- Profile Image -->
+            <Image x:Name="ProfileImage"
+                   HeightRequest="120"
+                   WidthRequest="120"
+                   Aspect="AspectFill"
+                   Margin="0,0,0,20"
+                   Source="{Binding ProfileImage, Converter={StaticResource ImageSourceConverter}}"
+                   HorizontalOptions="Center"/>
+
+            <Button Text="Upload Image" Clicked="OnUploadImageClicked" HorizontalOptions="Center"/>
+
+            <!-- User Information -->
+            <Label Text="User Information"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   HorizontalOptions="Center"
+                   Margin="0,20"/>
+
+            <Entry Text="{Binding Name}" Placeholder="Full Name" HeightRequest="50" FontSize="16"/>
+            <Entry Text="{Binding Username}" Placeholder="Username" HeightRequest="50" FontSize="16"/>
+
+            <Label Text="Date of Birth"
+                   FontAttributes="Bold"
+                   Margin="0,5"/>
+            <DatePicker Date="{Binding DateOfBirth}" />
+
+            <Entry Text="{Binding Email}" Placeholder="Email" Keyboard="Email" HeightRequest="50" FontSize="16"/>
+            <Entry Text="{Binding Address}" Placeholder="Address" HeightRequest="50" FontSize="16"/>
+            <Entry Text="{Binding Phone}" Placeholder="Phone" Keyboard="Telephone" HeightRequest="50" FontSize="16"/>
+
+            <Button Text="Save Changes" Clicked="OnSaveChangesClicked" HeightRequest="50" FontSize="16"/>
+            <Button Text="Add New User" Clicked="OnAddUserClicked" HeightRequest="50" FontSize="16"/>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

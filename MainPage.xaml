@@ -1,0 +1,61 @@
+﻿<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CommUnity_Hub.MainPage">
+
+    <AbsoluteLayout>
+        <!-- Background Image -->
+        <Image Source ="seselangen.jpg" Aspect="AspectFill"
+               AbsoluteLayout.LayoutBounds="0, 0, 1, 1"
+               AbsoluteLayout.LayoutFlags="All" />
+
+        <!-- Main Content -->
+        <ScrollView Padding="30" AbsoluteLayout.LayoutBounds="0, 0, 1, 1" AbsoluteLayout.LayoutFlags="All">
+            <Grid VerticalOptions="CenterAndExpand" HorizontalOptions="CenterAndExpand">
+                <!-- Background Box to Create a Card-Like Design -->
+                <Frame BackgroundColor="White" CornerRadius="20" Padding="40" HasShadow="True" 
+                       HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                    <VerticalStackLayout Spacing="20" HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+
+                        <!-- Logo Image -->
+                        <Image Source="barangay_seselangen_logo.png" WidthRequest="120" HeightRequest="120" 
+                               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" />
+
+                        <!-- Login Header -->
+                        <Label Text="CommUnity Hub" FontSize="28" TextColor="#2C3E50" 
+                               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand" 
+                               FontAttributes="Bold" FontFamily="Segoe UI" />
+
+                        <!-- Username Entry with Icon and Modern Styling -->
+                        <Frame BackgroundColor="#E8EAF6" CornerRadius="25" Padding="10" 
+                               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                                <Image Source="username_icon.png" WidthRequest="25" HeightRequest="25" VerticalOptions="Center" />
+                                <Entry x:Name="usernameEntry" Placeholder="Username" PlaceholderColor="#B0BEC5" TextColor="#2C3E50" 
+                                       FontSize="16" BackgroundColor="Transparent" HorizontalOptions="FillAndExpand" WidthRequest="550" />
+                            </HorizontalStackLayout>
+                        </Frame>
+
+                        <!-- Password Entry with Icon and Modern Styling -->
+                        <Frame BackgroundColor="#E8EAF6" CornerRadius="25" Padding="10" 
+                               HorizontalOptions="CenterAndExpand" VerticalOptions="CenterAndExpand">
+                            <HorizontalStackLayout Spacing="10" VerticalOptions="Center">
+                                <Image Source="password_icon.png" WidthRequest="25" HeightRequest="25" VerticalOptions="Center" />
+                                <Entry x:Name="passwordEntry" Placeholder="Password" IsPassword="True" PlaceholderColor="#B0BEC5" 
+                                       TextColor="#2C3E50" FontSize="16" BackgroundColor="Transparent" 
+                                       HorizontalOptions="FillAndExpand" WidthRequest="500" />
+                                <ImageButton x:Name="togglePasswordButton" Source="eye_closed.png" WidthRequest="25" HeightRequest="25" 
+                                             VerticalOptions="Center" Clicked="OnTogglePasswordClicked" 
+                                             Background="Transparent" />
+                            </HorizontalStackLayout>
+                        </Frame>
+
+                        <!-- Login Button with Rounded Corners -->
+                        <Button Text="Login" Clicked="OnLoginClicked" FontAttributes="Bold" FontSize="Medium" 
+                                TextColor="White" BackgroundColor="#2C3E50" CornerRadius="25" WidthRequest="250" HeightRequest="50" 
+                                HorizontalOptions="Center" />
+                    </VerticalStackLayout>
+                </Frame>
+            </Grid>
+        </ScrollView>
+    </AbsoluteLayout>
+</ContentPage>

@@ -1,0 +1,27 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CommUnity_Hub.EventModalPage"
+             BackgroundColor="#80000000"
+             Padding="20">
+    
+    <Frame WidthRequest="500" HorizontalOptions="Center" VerticalOptions="Center" HasShadow="True" CornerRadius="20" Padding="15" BackgroundColor="White">
+        <StackLayout Spacing="20">
+            <Label Text="Create Event" FontSize="24" FontAttributes="Bold" TextColor="#4a90e2" HorizontalOptions="Center"/>
+
+            <!-- Date Picker for Event Date -->
+            <DatePicker Date="{Binding SelectedDate}" />
+
+            <!-- Event Title Entry -->
+            <Entry Placeholder="Enter Event Title" Text="{Binding EventTitle}" BackgroundColor="#f0f0f5" FontSize="16" />
+
+            <!-- Event Description Editor -->
+            <Editor Placeholder="Enter Event Description" Text="{Binding EventDescription}" HeightRequest="120" BackgroundColor="#f0f0f5" FontSize="16" />
+
+            <!-- Buttons to Save or Cancel -->
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand" Spacing="10">
+                <Button Text="Save" Command="{Binding AddEventCommand}" BackgroundColor="#34c759" TextColor="White" FontSize="18" HorizontalOptions="FillAndExpand" />
+                <Button Text="Cancel" Clicked="OnCancelClicked" BackgroundColor="#e74c3c" TextColor="White" FontSize="18" HorizontalOptions="FillAndExpand" />
+            </StackLayout>
+        </StackLayout>
+    </Frame>
+</ContentPage>

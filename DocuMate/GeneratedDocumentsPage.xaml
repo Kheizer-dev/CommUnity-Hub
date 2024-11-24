@@ -1,0 +1,72 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CommUnity_Hub.GeneratedDocumentsPage"
+             BackgroundColor="#f5f5f5"
+             Title="Stored Documents">
+
+    <ContentPage.Content>
+        <ScrollView>
+            <Grid Padding="20">
+                <Frame CornerRadius="15"
+                       BackgroundColor="White"
+                       HasShadow="True"
+                       Padding="20"
+                       HorizontalOptions="FillAndExpand"
+                       VerticalOptions="FillAndExpand">
+
+                    <StackLayout Spacing="20">
+
+                        <Label Text="Generated Documents"
+                               FontSize="28"
+                               FontFamily="Segoe UI"
+                               FontAttributes="Bold"
+                               TextColor="#333"
+                               HorizontalOptions="Center"/>
+
+                        <!-- Add SearchBar here for search functionality -->
+                        <SearchBar Placeholder="Search documents..."
+                                   Text="{Binding SearchText}"
+                                   TextChanged="OnSearchTextChanged"/>
+
+                        <CollectionView x:Name="DocumentsCollectionView"
+                                        ItemsSource="{Binding FilteredDocuments}"
+                                        SelectionMode="Single"
+                                        SelectionChanged="OnDocumentSelected">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Frame BorderColor="#ccc"
+                                           BackgroundColor="#fff"
+                                           CornerRadius="10"
+                                           Padding="15"
+                                           HasShadow="True"
+                                           Margin="10">
+                                        <StackLayout Spacing="10">
+                                            <Label Text="{Binding DocumentName}"
+                                                   FontSize="20"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#007BFF"/>
+                                            <Label Text="Type:"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#555"/>
+                                            <Label Text="{Binding DocumentType}"
+                                                   FontSize="16"
+                                                   TextColor="#333"/>
+                                            <Label Text="Generated on:"
+                                                   FontSize="14"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#555"/>
+                                            <Label Text="{Binding DocumentDate, StringFormat='{0:MMMM dd, yyyy}'}"
+                                                   FontSize="14"
+                                                   TextColor="#888"/>
+                                        </StackLayout>
+                                    </Frame>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </Frame>
+            </Grid>
+        </ScrollView>
+    </ContentPage.Content>
+</ContentPage>

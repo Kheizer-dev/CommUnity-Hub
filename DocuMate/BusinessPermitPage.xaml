@@ -1,0 +1,101 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CommUnity_Hub.BusinessPermitPage">
+
+    <ContentPage.Content>
+        <Grid>
+            <!-- Background Image -->
+            <Image Source="barangay_seselangen_logo.png"
+                   Aspect="AspectFill"
+                   Opacity="0.5"/>
+            <!-- Adjust opacity for better visibility of content -->
+
+            <ScrollView>
+                <Frame CornerRadius="12"
+                       BackgroundColor="White"
+                       HasShadow="True"
+                       Padding="20"
+                       Margin="20"
+                       WidthRequest="800">
+
+                    <StackLayout Spacing="15">
+
+                        <!-- Header with modern styling -->
+                        <Label Text="Business Permit Details"
+                               FontSize="32"
+                               FontAttributes="Bold"
+                               HorizontalOptions="Center"
+                               TextColor="#2C3E50"
+                               Margin="0,0,0,20"/>
+
+                        <!-- Business Name -->
+                        <Entry x:Name="BusinessNameEntry"
+                               Placeholder="Enter Business Name"
+                               FontSize="18"
+                               TextColor="#333"
+                               PlaceholderColor="#888"
+                               BackgroundColor="#F8F8F8"/>
+
+                        <!-- Owner Name -->
+                        <Entry x:Name="OwnerNameEntry"
+                               Placeholder="Enter Owner Name"
+                               FontSize="18"
+                               TextColor="#333"
+                               PlaceholderColor="#888"
+                               BackgroundColor="#F8F8F8"/>
+
+                        <!-- Business Type -->
+                        <Entry x:Name="BusinessTypeEntry"
+                               Placeholder="Enter Type of Business"
+                               FontSize="18"
+                               TextColor="#333"
+                               PlaceholderColor="#888"
+                               BackgroundColor="#F8F8F8"/>
+
+                        <!-- Business Address -->
+                        <Entry x:Name="BusinessAddressEntry"
+                               Placeholder="Enter Business Address"
+                               FontSize="18"
+                               TextColor="#333"
+                               PlaceholderColor="#888"
+                               BackgroundColor="#F8F8F8"/>
+
+                        <!-- Tax Identification Number -->
+                        <Entry x:Name="TaxIDEntry"
+                               Placeholder="Enter Tax Identification Number"
+                               FontSize="18"
+                               TextColor="#333"
+                               PlaceholderColor="#888"
+                               BackgroundColor="#F8F8F8"/>
+
+                        <!-- Zoning Compliance -->
+                        <Entry x:Name="ZoningEntry"
+                               Placeholder="Zoning Compliance (Yes/No)"
+                               FontSize="18"
+                               TextColor="#333"
+                               PlaceholderColor="#888"
+                               BackgroundColor="#F8F8F8"/>
+
+                        <!-- Health/Safety Permits -->
+                        <Entry x:Name="HealthPermitEntry"
+                               Placeholder="Health and Safety Permits (if applicable)"
+                               FontSize="18"
+                               TextColor="#333"
+                               PlaceholderColor="#888"
+                               BackgroundColor="#F8F8F8"/>
+
+                        <!-- Generate Button -->
+                        <Button Text="Generate Business Permit"
+                                BackgroundColor="ForestGreen"
+                                TextColor="White"
+                                FontSize="20"
+                                HorizontalOptions="FillAndExpand"
+                                CornerRadius="10"
+                                Padding="15"
+                                Clicked="OnGenerateClicked"/>
+                    </StackLayout>
+                </Frame>
+            </ScrollView>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

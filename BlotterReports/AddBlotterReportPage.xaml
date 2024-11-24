@@ -1,0 +1,95 @@
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:sys="clr-namespace:System;assembly=netstandard"
+             x:Class="CommUnity_Hub.AddBlotterReportPage"
+             Title="Add Blotter Report"
+             BackgroundColor="Transparent">
+
+    <ContentPage.Content>
+        <Grid VerticalOptions="Center" HorizontalOptions="Center" Padding="20" WidthRequest="600" HeightRequest="600">
+            <Frame BackgroundColor="White" 
+                   CornerRadius="20" 
+                   HasShadow="True"
+                   Padding="20">
+                <ScrollView>
+                    <StackLayout Spacing="15">
+
+                        <Label Text="Add Blotter Report"
+                               FontSize="32"
+                               FontAttributes="Bold"
+                               FontFamily="Segoe UI"
+                               HorizontalOptions="Center"
+                               TextColor="#333333"/>
+
+                        <Label Text="Date:"
+                               FontSize="18"
+                               TextColor="#555555"/>
+                        <DatePicker x:Name="IncidentDatePicker"
+                                     BackgroundColor="#F5F5F5"/>
+
+                        <Label Text="Type of Incident:"
+                               FontSize="18"
+                               TextColor="#555555"/>
+                        <Picker x:Name="IncidentTypePicker"
+                                Title="Select Incident Type"
+                                ItemsSource="{Binding IncidentTypes}"
+                                SelectedIndexChanged="OnIncidentTypeSelected"
+                                BackgroundColor="#F5F5F5"
+                                FontSize="18"/>
+
+                        <Label Text="Description:"
+                               FontSize="18"
+                               TextColor="#555555"/>
+                        <Editor x:Name="DescriptionEditor"
+                                HeightRequest="100"
+                                Placeholder="Enter description here"
+                                BackgroundColor="#F5F5F5"/>
+
+                        <Label Text="Location:"
+                               FontSize="18"
+                               TextColor="#555555"/>
+                        <Entry x:Name="LocationEntry"
+                               Placeholder="Enter location of the incident"
+                               BackgroundColor="#F5F5F5"/>
+
+                        <Label Text="Parties Involved:"
+                               FontSize="18"
+                               TextColor="#555555"/>
+                        <Editor x:Name="PartiesEditor"
+                                HeightRequest="60"
+                                Placeholder="Enter names of parties involved"
+                                BackgroundColor="#F5F5F5"/>
+
+                        <Label Text="Evidence:"
+                               FontSize="18"
+                               TextColor="#555555"/>
+                        <Editor x:Name="EvidenceEditor"
+                                HeightRequest="60"
+                                Placeholder="Enter any evidence details"
+                                BackgroundColor="#F5F5F5"/>
+
+                        <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="10">
+                            <Button Text="Submit Report"
+                                    BackgroundColor="#4CAF50"
+                                    TextColor="White"
+                                    FontSize="18"
+                                    HorizontalOptions="FillAndExpand"
+                                    CornerRadius="10"
+                                    Padding="10"
+                                    Clicked="OnSubmitReportClicked"/>
+                            <Button Text="Cancel"
+                                    BackgroundColor="#dc143c"
+                                    TextColor="White"
+                                    FontSize="18"
+                                    HorizontalOptions="FillAndExpand"
+                                    CornerRadius="10"
+                                    Padding="10"
+                                    Clicked="OnCancelClicked"/>
+                        </HorizontalStackLayout>
+
+                    </StackLayout>
+                </ScrollView>
+            </Frame>
+        </Grid>
+    </ContentPage.Content>
+</ContentPage>

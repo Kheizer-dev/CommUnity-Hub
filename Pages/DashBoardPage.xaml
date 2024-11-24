@@ -1,0 +1,323 @@
+<ContentPage xmlns:local="clr-namespace:CommUnity_Hub"
+             xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:microcharts="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+             x:Class="CommUnity_Hub.DashBoardPage"
+             NavigationPage.HasBackButton="False"
+             BackgroundColor="#F2F3F5">
+
+    <Grid>
+        <!-- Background Image -->
+        <Image Source="barangay_seselangen_logo.png"
+               Aspect="AspectFit"
+               Opacity="0.3"
+               IsVisible="True" />
+
+        <!-- Main Content -->
+        <ScrollView Padding="20">
+            <StackLayout Spacing="30">
+                <!-- Header Section with Upcoming Events, Recent Transactions, and Recent Documents -->
+                <StackLayout Orientation="Horizontal" Spacing="15" HorizontalOptions="FillAndExpand">
+                    <!-- Title and Subtitle -->
+                    <StackLayout VerticalOptions="Center" HorizontalOptions="StartAndExpand">
+                        <Label Text="CommUnity Hub"
+                               FontSize="Header"
+                               FontAttributes="Bold"
+                               TextColor="#1A237E"
+                               HorizontalOptions="StartAndExpand"
+                               FontFamily="Roboto"/>
+                        <Label Text="Streamlined Barangay Administration"
+                               FontSize="16"
+                               TextColor="#424242"
+                               HorizontalOptions="StartAndExpand" />
+                    </StackLayout>
+
+                    <!-- Recent Documents Frame -->
+                    <Frame BackgroundColor="#FFFFFF" CornerRadius="15" Padding="15" HorizontalOptions="EndAndExpand"
+                           VerticalOptions="CenterAndExpand" HasShadow="True" Margin="10">
+                        <StackLayout>
+                            <Label Text="Recent Documents Generated" FontAttributes="Bold" FontSize="16" TextColor="#1565C0" />
+                            <ListView x:Name="DocumentsListView" HasUnevenRows="True" BackgroundColor="Transparent" SeparatorVisibility="None">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Padding="10" Orientation="Horizontal">
+                                                <Label Text="{Binding DocumentName}" FontAttributes="Bold" FontSize="14" HorizontalOptions="StartAndExpand" />
+                                                <Label Text="{Binding GeneratedDate, StringFormat='{0:MMMM dd, yyyy}'}" 
+                                                       TextColor="Gray" FontSize="12" HorizontalOptions="End" />
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Recent Transactions Frame -->
+                    <Frame CornerRadius="15" Padding="15" Margin="10" BackgroundColor="#FFFFFF" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" HasShadow="True">
+                        <StackLayout>
+                            <Label Text="Recent Transactions" FontAttributes="Bold" FontSize="16" HorizontalOptions="Center" TextColor="#1565C0" />
+                            <CollectionView ItemsSource="{Binding RecentTransactions}">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Padding="10" Orientation="Vertical">
+                                            <Label Text="{Binding DocumentName}" FontSize="14" />
+                                            <Label Text="{Binding Status}" FontSize="12" HorizontalOptions="End" FontAttributes="Bold" TextColor="#1565C0"/>
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Upcoming Events Frame -->
+                    <Frame BackgroundColor="#FFFFFF" CornerRadius="15" Padding="15" WidthRequest="250" VerticalOptions="Center" HasShadow="True" Margin="10">
+                        <StackLayout>
+                            <Label Text="Upcoming Events" FontAttributes="Bold" FontSize="16" TextColor="#1565C0" />
+                            <ListView x:Name="EventsListView" HasUnevenRows="True" BackgroundColor="Transparent" SeparatorVisibility="None" ItemSelected="OnEventSelected">
+                                <ListView.ItemTemplate>
+                                    <DataTemplate>
+                                        <ViewCell>
+                                            <StackLayout Padding="10" Orientation="Horizontal">
+                                                <Label Text="{Binding Title}" FontAttributes="Bold" FontSize="14" HorizontalOptions="StartAndExpand" />
+                                                <Label Text="{Binding Date, StringFormat='{0:MMMM dd, yyyy}'}" TextColor="Gray" FontSize="12" HorizontalOptions="End" />
+                                            </StackLayout>
+                                        </ViewCell>
+                                    </DataTemplate>
+                                </ListView.ItemTemplate>
+                            </ListView>
+                        </StackLayout>
+                    </Frame>
+                </StackLayout>
+
+                <!-- Dashboard Info Section -->
+                <Grid ColumnSpacing="15" RowSpacing="15">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Document Summary Card -->
+                    <Frame BackgroundColor="#E8EAF6" CornerRadius="15" Padding="20" Grid.Column="0" HasShadow="True">
+                        <StackLayout>
+                            <Label Text="Document Summary" FontSize="20" FontAttributes="Bold" FontFamily="Segoe UI" TextColor="#1A237E" />
+                            <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*,Auto">
+                                <HorizontalStackLayout Grid.Column="0" HorizontalOptions="StartAndExpand">
+                                    <Label x:Name="DocumentsCountLabel" Text="0" FontSize="38" FontAttributes="Bold" 
+                                           TextColor="#303F9F" VerticalOptions="Center"/>
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout Grid.Column="1" HorizontalOptions="EndAndExpand">
+                                    <Image Source="document_icon.png" Aspect="AspectFit" Opacity="0.2" HeightRequest="70" VerticalOptions="Center"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Total Residents Card -->
+                    <Frame BackgroundColor="#C8E6C9" CornerRadius="15" Padding="20" Grid.Column="1" HasShadow="True">
+                        <StackLayout>
+                            <Label Text="Total Residents" FontSize="20" FontAttributes="Bold" TextColor="#2E7D32" />
+                            <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
+                                <HorizontalStackLayout Grid.Column="0" HorizontalOptions="StartAndExpand">
+                                    <Label x:Name="ResidentsCountLabel" Text="{Binding ResidentsCount}" FontSize="38" 
+                                           FontAttributes="Bold" TextColor="#388E3C" VerticalOptions="Center" />
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout Grid.Column="1" HorizontalOptions="EndAndExpand">
+                                    <Image Source="resident_icon.png" Aspect="AspectFit" Opacity="0.2" HeightRequest="70" VerticalOptions="Center"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Recent Blotter Card -->
+                    <Frame BackgroundColor="#FFF9C4" CornerRadius="15" Padding="20" Grid.Column="2" HasShadow="True">
+                        <StackLayout>
+                            <Label Text="Recent Blotter" FontSize="20" FontAttributes="Bold" TextColor="#F57F17" />
+                            <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
+                                <HorizontalStackLayout Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
+                                    <StackLayout VerticalOptions="Center">
+                                        <Label Text="{Binding Blotter1}" FontSize="16" TextColor="#616161" VerticalOptions="Center"/>
+                                        <Label Text="{Binding Blotter2}" FontSize="16" TextColor="#616161" VerticalOptions="Center"/>
+                                    </StackLayout>
+                                </HorizontalStackLayout>
+                                <HorizontalStackLayout Grid.Column="1" HorizontalOptions="EndAndExpand">
+                                    <Image Source="reports_icon.png" Aspect="AspectFit" Opacity="0.2" HeightRequest="70" VerticalOptions="Center"/>
+                                </HorizontalStackLayout>
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- Recent Activity and Resident Demographics side by side -->
+                <Grid ColumnSpacing="20" RowSpacing="20">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+
+                    <!-- Resident Demographics -->
+                    <Frame BackgroundColor="#FFCDD2" CornerRadius="15" Padding="20" Grid.Column="0" HasShadow="True">
+                        <StackLayout>
+                            <Label Text="Resident Demographics" FontSize="22" FontAttributes="Bold" TextColor="#B71C1C" />
+
+                            <!-- Gender and Age Group Charts in a Grid -->
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto" />
+                                    <!-- For the labels -->
+                                    <RowDefinition Height="*" />
+                                    <!-- For the charts -->
+                                    <RowDefinition Height="*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*" />
+                                    <ColumnDefinition Width="*" />
+                                </Grid.ColumnDefinitions>
+
+                                <!-- Gender Label -->
+                                <Label Text="Gender" Grid.Row="0" Grid.Column="0" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Caption" Margin="10"/>
+
+                                <!-- Age Group Label -->
+                                <Label Text="Age" Grid.Row="0" Grid.Column="1" HorizontalOptions="Center" FontAttributes="Bold" FontSize="Caption" Margin="10"/>
+
+                                <!-- Gender Chart -->
+                                <microcharts:ChartView x:Name="GenderChart" Grid.Row="1" Grid.Column="0" HeightRequest="200" WidthRequest="200"/>
+                                <!-- Gender Counts -->
+                                <StackLayout Grid.Row="2" Grid.Column="0">
+                                    <Label x:Name="MaleCountLabel" Text="Males: 0" FontSize="18" FontAttributes="Bold" TextColor="#1B5E20" />
+                                    <Label x:Name="FemaleCountLabel" Text="Females: 0" FontSize="18" FontAttributes="Bold" TextColor="#1B5E20" />
+                                </StackLayout>
+                                <!-- Age Group Chart -->
+                                <microcharts:ChartView x:Name="AgeGroupChart" Grid.Row="1" Grid.Column="1" HeightRequest="200" WidthRequest="300"/>
+                                <!-- Age Group Distribution -->
+                                <Label x:Name="AgeGroupLabel" Text="Age Group Distribution: 0-18: 0, 19-35: 0, 36-60: 0, 61+: 0" Grid.Row="2" Grid.Column="1" FontSize="18" FontAttributes="Bold" TextColor="#1B5E20" HorizontalOptions="StartAndExpand" />
+                            </Grid>
+                        </StackLayout>
+                    </Frame>
+
+                    <!-- Recent Activity -->
+                    <Frame BackgroundColor="#E3F2FD" CornerRadius="15" Padding="20" Grid.Column="1" HasShadow="True">
+                        <StackLayout>
+                            <Label Text="Recent Activity"
+                                     FontSize="22"
+                                     FontAttributes="Bold"
+                                     TextColor="#1565C0" />
+                            <CollectionView x:Name="ActivityLogsCollection" ItemsSource="{Binding ActivityLogs}" HeightRequest="300">
+                                <CollectionView.ItemTemplate>
+                                    <DataTemplate>
+                                        <StackLayout Padding="10">
+                                            <Label Text="{Binding Timestamp, StringFormat='{0:MM/dd/yyyy HH:mm}'}"
+                                                   FontSize="14"
+                                                   TextColor="#616161" />
+                                            <Label Text="{Binding ActivityDescription}"
+                                                   FontSize="16"
+                                                   FontAttributes="Bold"
+                                                   TextColor="#0D47A1" />
+                                        </StackLayout>
+                                    </DataTemplate>
+                                </CollectionView.ItemTemplate>
+                            </CollectionView>
+                        </StackLayout>
+                    </Frame>
+                </Grid>
+
+                <!-- Barangay Officials Section -->
+                <Frame BackgroundColor="#F9FAFB" CornerRadius="15" Padding="20" HasShadow="True">
+                    <StackLayout>
+                        <Label Text="Barangay Officials"
+                               FontSize="24"
+                               FontAttributes="Bold"
+                               TextColor="#1E3A8A"
+                               HorizontalOptions="StartAndExpand"
+                               Margin="0,0,0,10"/>
+
+                        <!-- Column Headers -->
+                        <Grid Padding="10" ColumnSpacing="10" BackgroundColor="#E0E7FF">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="70" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                                <ColumnDefinition Width="*" />
+                            </Grid.ColumnDefinitions>
+                            <Label Text="Photo" 
+                                   FontAttributes="Bold" 
+                                   TextColor="#1E3A8A" 
+                                   HorizontalOptions="Center" 
+                                   Grid.Column="0" 
+                                   FontSize="16"/>
+                            <Label Text="Name and Position" 
+                                   FontAttributes="Bold" 
+                                   TextColor="#1E3A8A" 
+                                   HorizontalOptions="Center" 
+                                   Grid.Column="1" 
+                                   FontSize="16"/>
+                            <Label Text="Address" 
+                                   FontAttributes="Bold" 
+                                   TextColor="#1E3A8A" 
+                                   HorizontalOptions="Center" 
+                                   Grid.Column="2" 
+                                   FontSize="16"/>
+                            <Label Text="Contact Number" 
+                                   FontAttributes="Bold" 
+                                   TextColor="#1E3A8A" 
+                                   HorizontalOptions="Center" 
+                                   Grid.Column="3" 
+                                   FontSize="16"/>
+                        </Grid>
+
+                        <CollectionView ItemsSource="{x:Static local:BarangayOfficialsData.BarangayOfficialsCollection}" 
+                                        VerticalOptions="FillAndExpand" 
+                                        HeightRequest="300" 
+                                        SelectionMode="None">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Padding="10" ColumnSpacing="10">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="70" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                            <ColumnDefinition Width="*" />
+                                        </Grid.ColumnDefinitions>
+
+                                        <Image Source="{Binding ImageSource}" 
+                                               WidthRequest="70" 
+                                               HeightRequest="70" 
+                                               Aspect="AspectFill" 
+                                               Grid.Column="0"
+                                               HorizontalOptions="Center" 
+                                               VerticalOptions="Center" 
+                                               Margin="0,5"/>
+
+                                        <StackLayout Padding="10" Grid.Column="1" HorizontalOptions="CenterAndExpand">
+                                            <Label Text="{Binding Name}" 
+                                                   FontSize="18" 
+                                                   FontAttributes="Bold" 
+                                                   TextColor="#374151"/>
+                                            <Label Text="{Binding Position}" 
+                                                   FontSize="16" 
+                                                   TextColor="#6B7280"
+                                                   HorizontalOptions="CenterAndExpand"/>
+                                        </StackLayout>
+
+                                        <StackLayout Padding="10" Grid.Column="2" HorizontalOptions="CenterAndExpand">
+                                            <Label Text="{Binding Address}" 
+                                                   FontSize="16" 
+                                                   TextColor="#6B7280"/>
+                                        </StackLayout>
+
+                                        <StackLayout Padding="10" Grid.Column="3" HorizontalOptions="CenterAndExpand">
+                                            <Label Text="{Binding ContactNumber}" 
+                                                   FontSize="16" 
+                                                   TextColor="#6B7280"/>
+                                        </StackLayout>
+                                    </Grid>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </Frame>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

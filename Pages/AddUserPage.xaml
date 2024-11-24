@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="CommUnity_Hub.AddUserPage"
+             Title="Add New User"
+             Background="Transparent">
+    <Frame Padding="20"
+           BackgroundColor="White"
+           CornerRadius="10"
+           HasShadow="True"
+           WidthRequest="400"
+           HeightRequest="400">
+        <ScrollView>
+            <VerticalStackLayout Spacing="15">
+                <Entry Placeholder="Name" x:Name="NameEntry"/>
+                <Entry Placeholder="Username" x:Name="UsernameEntry"/>
+                <Entry Placeholder="Password" x:Name="PasswordEntry" IsPassword="True"/>
+                <Entry Placeholder="Email" x:Name="EmailEntry"/>
+                <Entry Placeholder="Address" x:Name="AddressEntry"/>
+                <Entry Placeholder="Phone Number" x:Name="PhoneEntry"/>
+
+                <Label Text="Date of Birth:" FontAttributes="Bold"/>
+                <DatePicker x:Name="DOBPicker" Date="{Binding UserDOB, Mode=TwoWay}" />
+
+                <Button Text="Add" BackgroundColor="#4CAF50" TextColor="White"
+                        Clicked="OnAddButtonClicked"/>
+                <Button Text="Cancel" BackgroundColor="#FF0000" TextColor="White"
+                        Clicked="OnCancelButtonClicked"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Frame>
+</ContentPage>
