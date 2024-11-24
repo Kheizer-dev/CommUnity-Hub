@@ -498,6 +498,7 @@ namespace CommUnity_Hub
             LoadRecentDocuments();
             LoadRecentTransactions();
             LoadResidentDemographics();
+            LoadUpcomingEvents();
         }
     }
 }

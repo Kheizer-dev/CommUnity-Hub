@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             xmlns:local="clr-namespace:CommUnityHub"
+             xmlns:local="clr-namespace:CommUnity_Hub"
              x:Class="CommUnity_Hub.ProfilePage"
              Title="Profile Management"
              BackgroundColor="#F9F9F9">
@@ -53,7 +53,18 @@
             <Entry Text="{Binding Phone}" Placeholder="Phone" Keyboard="Telephone" HeightRequest="50" FontSize="16"/>
 
             <Button Text="Save Changes" Clicked="OnSaveChangesClicked" HeightRequest="50" FontSize="16"/>
-            <Button Text="Add New User" Clicked="OnAddUserClicked" HeightRequest="50" FontSize="16"/>
+            <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="10">
+                <Button Text="Change Password" 
+                        Clicked="OnChangePasswordClicked" 
+                        HeightRequest="50" 
+                        FontSize="16"
+                        IsVisible="{Binding IsAdmin}" />
+                <Button Text="Add New User" 
+                        Clicked="OnAddUserClicked" 
+                        HeightRequest="50" 
+                        FontSize="16"
+                        IsVisible="{Binding IsAdmin}" />
+            </HorizontalStackLayout>
         </StackLayout>
     </ScrollView>
 </ContentPage>

@@ -12,6 +12,7 @@ namespace CommUnity_Hub
         private string _address;
         private string _phone;
         private byte[] _profileImage;
+        private bool _isAdmin;
 
         public int UserId { get; set; } // Assuming you have a UserId property to store the user's ID
 
@@ -103,6 +104,20 @@ namespace CommUnity_Hub
             set
             {
                 SetProperty(ref _profileImage, value);
+            }
+        }
+
+        public bool IsAdmin
+        {
+            get
+            {
+                return _isAdmin;
+            }
+
+            set
+            {
+                _isAdmin = value;
+                OnPropertyChanged(nameof(IsAdmin));
             }
         }
 

@@ -11,7 +11,7 @@ namespace CommUnity_Hub
         {
             InitializeComponent();
             _viewModel = new ProfileViewModel();
-            BindingContext = _viewModel; // Set the BindingContext to the ViewModel
+            BindingContext = _viewModel;
             LoadUserData();
         }
 
@@ -31,7 +31,7 @@ namespace CommUnity_Hub
                     SqlDataReader reader = await cmd.ExecuteReaderAsync();
                     if (reader.Read())
                     {
-                        // Populate the ViewModel properties
+                        // Populate ViewModel properties
                         _viewModel.UserId = (int)reader["UserID"];
                         _viewModel.Name = reader["Name"].ToString();
                         _viewModel.Username = reader["Username"].ToString();
@@ -40,6 +40,9 @@ namespace CommUnity_Hub
                         _viewModel.Address = reader["Address"].ToString();
                         _viewModel.Phone = reader["Phone"].ToString();
                         _viewModel.ProfileImage = reader["ProfileImage"] as byte[];
+
+                        // Check if the username is "admin"
+                        _viewModel.IsAdmin = _viewModel.Username.Equals("admin", StringComparison.OrdinalIgnoreCase);
                     }
                 }
             }
@@ -48,6 +51,7 @@ namespace CommUnity_Hub
                 await DisplayAlert("Error", ex.Message, "OK");
             }
         }
+
 
         private async void OnUploadImageClicked(object sender, EventArgs e)
         {
@@ -124,6 +128,11 @@ namespace CommUnity_Hub
         private async void OnAddUserClicked(object sender, EventArgs e)
         {
             await Navigation.PushModalAsync(new AddUserPage());
+        }
+
+        private async void OnChangePasswordClicked(object sender, EventArgs e)
+        {
+            await Navigation.PushModalAsync(new ChangePasswordPage());
         }
     }
 }
