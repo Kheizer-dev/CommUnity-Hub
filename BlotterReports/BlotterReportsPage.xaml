@@ -61,25 +61,44 @@
                                        CornerRadius="12"
                                        HasShadow="True">
                                     <StackLayout Spacing="5">
-                                        <Label Text="{Binding CaseID}" 
-                                               FontSize="20" 
-                                               FontAttributes="Bold"
-                                               TextColor="#4CAF50"/>
-                                        <Label Text="{Binding IncidentDetails}" 
-                                               FontSize="16"
-                                               TextColor="#333"/>
-                                        <Label Text="{Binding Location}" 
-                                               FontSize="14" 
-                                               TextColor="DarkGray" />
-                                        <Label Text="{Binding PartiesInvolved}" 
-                                               FontSize="14" 
-                                               TextColor="DarkGray" />
-                                        <Label Text="{Binding Evidence}" 
-                                               FontSize="14" 
-                                               TextColor="DarkGray" />
-                                        <Label Text="{Binding DateReported, StringFormat='Reported: {0:MMM dd, yyyy}'}" 
-                                               FontSize="12" 
-                                               TextColor="Gray"/>
+                                        <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
+                                            <VerticalStackLayout Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="CenterAndExpand">
+                                                <Label Text="{Binding CaseID}" 
+                                                       FontSize="20" 
+                                                       FontAttributes="Bold"
+                                                       TextColor="#4CAF50"/>
+                                                <Label Text="{Binding IncidentDetails}" 
+                                                       FontSize="16"
+                                                       TextColor="#333"/>
+                                                <Label Text="{Binding Location}" 
+                                                       FontSize="14" 
+                                                       TextColor="DarkGray" />
+                                                <Label Text="{Binding PartiesInvolved}" 
+                                                       FontSize="14" 
+                                                       TextColor="DarkGray" />
+                                                <Label Text="{Binding Evidence}" 
+                                                       FontSize="14" 
+                                                       TextColor="DarkGray" />
+                                                <Label Text="{Binding DateReported, StringFormat='Reported: {0:MMM dd, yyyy}'}" 
+                                                       FontSize="12" 
+                                                       TextColor="Gray"/>
+                                            </VerticalStackLayout>
+                                            <HorizontalStackLayout Grid.Column="1" HorizontalOptions="EndAndExpand" VerticalOptions="CenterAndExpand">
+                                                <!-- Media Section -->
+                                                <Frame BorderColor="#cccccc" CornerRadius="10" Padding="0" HasShadow="True">
+                                                    <Image Source="{Binding MediaData, Converter={StaticResource ByteArrayToImageConverter}}"
+                                                           IsVisible="{Binding MediaType, Converter={StaticResource MediaTypeToVisibilityConverter}, ConverterParameter=Image}"
+                                                           HeightRequest="150"
+                                                           Aspect="AspectFill"/>
+                                                </Frame>
+                                                <Frame BorderColor="#cccccc" CornerRadius="10" Padding="0" HasShadow="True">
+                                                    <Label Text="{Binding MediaFilePath}"
+                                                           IsVisible="{Binding MediaType, Converter={StaticResource MediaTypeToVisibilityConverter}, ConverterParameter=Video}"
+                                                           TextColor="Blue"
+                                                           FontAttributes="Italic"/>
+                                                </Frame>
+                                            </HorizontalStackLayout>
+                                        </Grid>
                                     </StackLayout>
                                 </Frame>
                             </DataTemplate>

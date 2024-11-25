@@ -36,7 +36,7 @@
                     <Frame BackgroundColor="#FFFFFF" CornerRadius="15" Padding="15" HorizontalOptions="EndAndExpand"
                            VerticalOptions="CenterAndExpand" HasShadow="True" Margin="10">
                         <StackLayout>
-                            <Label Text="Recent Documents Generated" FontAttributes="Bold" FontSize="16" TextColor="#1565C0" />
+                            <Label Text="Recent Documents Generated" FontAttributes="Bold" FontSize="16" TextColor="#1565C0" FontFamily="Segoe UI"/>
                             <ListView x:Name="DocumentsListView" HasUnevenRows="True" BackgroundColor="Transparent" SeparatorVisibility="None">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
@@ -56,7 +56,7 @@
                     <!-- Recent Transactions Frame -->
                     <Frame CornerRadius="15" Padding="15" Margin="10" BackgroundColor="#FFFFFF" VerticalOptions="CenterAndExpand" HorizontalOptions="EndAndExpand" HasShadow="True">
                         <StackLayout>
-                            <Label Text="Recent Transactions" FontAttributes="Bold" FontSize="16" HorizontalOptions="Center" TextColor="#1565C0" />
+                            <Label Text="Recent Transactions" FontAttributes="Bold" FontSize="16" HorizontalOptions="StartAndExpand" TextColor="#1565C0" FontFamily="Segoe UI"/>
                             <CollectionView ItemsSource="{Binding RecentTransactions}">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
@@ -73,7 +73,7 @@
                     <!-- Upcoming Events Frame -->
                     <Frame BackgroundColor="#FFFFFF" CornerRadius="15" Padding="15" WidthRequest="250" VerticalOptions="Center" HasShadow="True" Margin="10">
                         <StackLayout>
-                            <Label Text="Upcoming Events" FontAttributes="Bold" FontSize="16" TextColor="#1565C0" />
+                            <Label Text="Upcoming Events" FontAttributes="Bold" FontSize="16" TextColor="#1565C0" FontFamily="Segoe UI"/>
                             <ListView x:Name="EventsListView" HasUnevenRows="True" BackgroundColor="Transparent" SeparatorVisibility="None" ItemSelected="OnEventSelected">
                                 <ListView.ItemTemplate>
                                     <DataTemplate>
@@ -117,7 +117,7 @@
                     <!-- Total Residents Card -->
                     <Frame BackgroundColor="#C8E6C9" CornerRadius="15" Padding="20" Grid.Column="1" HasShadow="True">
                         <StackLayout>
-                            <Label Text="Total Residents" FontSize="20" FontAttributes="Bold" TextColor="#2E7D32" />
+                            <Label Text="Total Residents" FontSize="20" FontAttributes="Bold" TextColor="#2E7D32" FontFamily="Segoe UI"/>
                             <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
                                 <HorizontalStackLayout Grid.Column="0" HorizontalOptions="StartAndExpand">
                                     <Label x:Name="ResidentsCountLabel" Text="{Binding ResidentsCount}" FontSize="38" 
@@ -133,7 +133,7 @@
                     <!-- Recent Blotter Card -->
                     <Frame BackgroundColor="#FFF9C4" CornerRadius="15" Padding="20" Grid.Column="2" HasShadow="True">
                         <StackLayout>
-                            <Label Text="Recent Blotter" FontSize="20" FontAttributes="Bold" TextColor="#F57F17" />
+                            <Label Text="Recent Blotter" FontSize="20" FontAttributes="Bold" TextColor="#F57F17" FontFamily="Segoe UI"/>
                             <Grid HorizontalOptions="FillAndExpand" ColumnDefinitions="*, Auto">
                                 <HorizontalStackLayout Grid.Column="0" HorizontalOptions="StartAndExpand" VerticalOptions="Center">
                                     <StackLayout VerticalOptions="Center">
@@ -159,7 +159,7 @@
                     <!-- Resident Demographics -->
                     <Frame BackgroundColor="#FFCDD2" CornerRadius="15" Padding="20" Grid.Column="0" HasShadow="True">
                         <StackLayout>
-                            <Label Text="Resident Demographics" FontSize="22" FontAttributes="Bold" TextColor="#B71C1C" />
+                            <Label Text="Resident Demographics" FontSize="22" FontAttributes="Bold" TextColor="#B71C1C" FontFamily="Segoe UI"/>
 
                             <!-- Gender and Age Group Charts in a Grid -->
                             <Grid>
@@ -200,9 +200,10 @@
                     <Frame BackgroundColor="#E3F2FD" CornerRadius="15" Padding="20" Grid.Column="1" HasShadow="True">
                         <StackLayout>
                             <Label Text="Recent Activity"
-                                     FontSize="22"
-                                     FontAttributes="Bold"
-                                     TextColor="#1565C0" />
+                                   FontSize="22"
+                                   FontAttributes="Bold"
+                                   TextColor="#1565C0" 
+                                   FontFamily="Segoe UI"/>
                             <CollectionView x:Name="ActivityLogsCollection" ItemsSource="{Binding ActivityLogs}" HeightRequest="300">
                                 <CollectionView.ItemTemplate>
                                     <DataTemplate>
@@ -230,7 +231,8 @@
                                FontAttributes="Bold"
                                TextColor="#1E3A8A"
                                HorizontalOptions="StartAndExpand"
-                               Margin="0,0,0,10"/>
+                               Margin="0,0,0,10"
+                               FontFamily="Segoe UI"/>
 
                         <!-- Column Headers -->
                         <Grid Padding="10" ColumnSpacing="10" BackgroundColor="#E0E7FF">

@@ -68,6 +68,16 @@
                                 Placeholder="Enter any evidence details"
                                 BackgroundColor="#F5F5F5"/>
 
+                        <Label Text="Upload Evidence (Image/Video):"
+                               FontSize="18" TextColor="#555555" />
+
+                        <Button Text="Select File"
+                                BackgroundColor="#2196F3" TextColor="White"
+                                FontSize="18" Clicked="OnSelectFileClicked" />
+
+                        <Label x:Name="SelectedFileLabel"
+                               FontSize="14" TextColor="#888888" />
+
                         <HorizontalStackLayout HorizontalOptions="CenterAndExpand" Spacing="10">
                             <Button Text="Submit Report"
                                     BackgroundColor="#4CAF50"

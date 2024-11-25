@@ -12,6 +12,10 @@ namespace CommUnity_Hub
         public string? Location { get; set; }       // Added Location
         public string? PartiesInvolved { get; set; } // Added Parties Involved
         public string? Evidence { get; set; }       // Added Evidence
+        public string? MediaType { get; set; }
+        public byte[]? MediaData { get; set; } // For images
+        public string? MediaFilePath { get; set; } // For videos
+        public DateTime DateCreated { get; set; } = DateTime.Now;
 
         // Generate the PDF for a blotter report
         [Obsolete]

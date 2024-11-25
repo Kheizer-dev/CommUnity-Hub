@@ -22,7 +22,7 @@ namespace CommUnity_Hub
             using (var connection = new SqlConnection(connectionString))
             {
                 connection.Open();
-                var command = new SqlCommand("SELECT CaseID, IncidentDetails, DateReported, Location, PartiesInvolved, Evidence FROM BlotterReports", connection);
+                var command = new SqlCommand("SELECT CaseID, IncidentDetails, DateReported, Location, PartiesInvolved, Evidence, MediaType, MediaData, MediaFilePath FROM BlotterReports", connection);
                 using (var reader = command.ExecuteReader())
                 {
                     while (reader.Read())
@@ -34,12 +34,16 @@ namespace CommUnity_Hub
                             DateReported = reader.GetDateTime(2),
                             Location = reader.GetString(3),
                             PartiesInvolved = reader.GetString(4),
-                            Evidence = reader.IsDBNull(5) ? null : reader.GetString(5)
+                            Evidence = reader.IsDBNull(5) ? null : reader.GetString(5),
+                            MediaType = reader.IsDBNull(6) ? null : reader.GetString(6),
+                            MediaData = reader.IsDBNull(7) ? null : (byte[])reader[7],
+                            MediaFilePath = reader.IsDBNull(8) ? null : reader.GetString(8)
                         });
                     }
                 }
             }
         }
+
 
         private void OnSearchBarTextChanged(object sender, TextChangedEventArgs e)
         {
