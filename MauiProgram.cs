@@ -16,13 +16,11 @@ namespace CommUnity_Hub
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 })
-                .UseSkiaSharp();
+                .UseSkiaSharp()
+                .Services.AddSingleton<ChartView>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
-            // Register Microcharts Maui
-            builder.Services.AddSingleton<ChartView>();
-
             return builder.Build();
         }
     }

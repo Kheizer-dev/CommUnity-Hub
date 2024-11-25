@@ -88,6 +88,7 @@
 	  <None Remove="Resources\Images\resident_management_icon.png" />
 	  <None Remove="Resources\Images\rhu_icon.png" />
 	  <None Remove="Resources\Images\seselangen.jpg" />
+	  <None Remove="Resources\Images\sual_logo.png" />
 	  <None Remove="Resources\Images\username_icon.png" />
 	  <None Remove="Resources\Images\user_icon.png" />
 	</ItemGroup>

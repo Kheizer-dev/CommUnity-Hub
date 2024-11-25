@@ -36,6 +36,16 @@ namespace CommUnity_Hub
                     await DisplayAlert("Restriction", "This resident has a blotter record and cannot be issued a Barangay Clearance.", "OK");
                     return;
                 }
+                // Load the left logo image
+                XImage leftLogoImage = XImage.FromFile("C:\\Users\\jayja\\source\\repos\\CommUnity Hub\\Resources\\Images\\barangay_seselangen_logo.png");
+
+                // Load the right logo image
+                XImage rightLogoImage = XImage.FromFile("C:\\Users\\jayja\\source\\repos\\CommUnity Hub\\Resources\\Images\\sual_logo.png");
+
+                // Logo dimensions
+                double logoWidth = 100; // Adjust as needed
+                double leftLogoHeight = leftLogoImage.Height * (logoWidth / leftLogoImage.Width);
+                double rightLogoHeight = rightLogoImage.Height * (logoWidth / rightLogoImage.Width);
 
                 PdfDocument document = new PdfDocument();
                 document.Info.Title = $"Barangay Clearance for {ResidentNameEntry.Text}";
@@ -44,18 +54,28 @@ namespace CommUnity_Hub
                 XFont headerFont = new XFont("Times New Roman", 16, XFontStyleEx.Bold);
                 XFont subHeaderFont = new XFont("Times New Roman", 14, XFontStyleEx.Bold);
                 XFont contentFont = new XFont("Times New Roman", 12, XFontStyleEx.Regular);
-                double yPosition = 40;
 
-                gfx.DrawString("Republic of the Philippines", headerFont, XBrushes.Black, new XRect(0, yPosition, page.Width, 0), XStringFormats.TopCenter);
-                yPosition += 25;
-                gfx.DrawString("Province of Pangasinan", subHeaderFont, XBrushes.Black, new XRect(0, yPosition, page.Width, 0), XStringFormats.TopCenter);
-                yPosition += 20;
-                gfx.DrawString("Municipality of Sual", subHeaderFont, XBrushes.Black, new XRect(0, yPosition, page.Width, 0), XStringFormats.TopCenter);
-                yPosition += 20;
-                gfx.DrawString("Barangay Seselangen", headerFont, XBrushes.Black, new XRect(0, yPosition, page.Width, 0), XStringFormats.TopCenter);
-                yPosition += 40;
+                // Calculate positions
+                double headerCenterY = 80; // Centerline for the header section
+                double logoYPosition = headerCenterY - (Math.Max(leftLogoHeight, rightLogoHeight) / 2); // Align logos vertically
+
+                // Draw left logo
+                gfx.DrawImage(leftLogoImage, new XRect(20, logoYPosition, logoWidth, leftLogoHeight));
+
+                // Draw right logo
+                gfx.DrawImage(rightLogoImage, new XRect(page.Width - logoWidth - 20, logoYPosition, logoWidth, rightLogoHeight));
+
+                // Draw header text
+                gfx.DrawString("Republic of the Philippines", headerFont, XBrushes.Black, new XRect(0, headerCenterY - 40, page.Width, 0), XStringFormats.TopCenter);
+                gfx.DrawString("Province of Pangasinan", subHeaderFont, XBrushes.Black, new XRect(0, headerCenterY - 20, page.Width, 0), XStringFormats.TopCenter);
+                gfx.DrawString("Municipality of Sual", subHeaderFont, XBrushes.Black, new XRect(0, headerCenterY, page.Width, 0), XStringFormats.TopCenter);
+                gfx.DrawString("Barangay Seselangen", headerFont, XBrushes.Black, new XRect(0, headerCenterY + 20, page.Width, 0), XStringFormats.TopCenter);
+
+                // Draw Barangay Clearance Title
+                double yPosition = headerCenterY + 60;
                 gfx.DrawString("Barangay Clearance", new XFont("Times New Roman", 18, XFontStyleEx.Bold), XBrushes.Black, new XRect(0, yPosition, page.Width, 0), XStringFormats.TopCenter);
 
+                // Continue with the rest of the document content
                 yPosition += 40;
                 gfx.DrawString($"Clearance Number: {ClearanceNumberEntry.Text}", contentFont, XBrushes.Black, new XRect(40, yPosition, page.Width, 0), XStringFormats.TopLeft);
                 yPosition += 20;
