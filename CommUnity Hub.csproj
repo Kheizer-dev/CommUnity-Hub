@@ -40,7 +40,7 @@
 
 	<ItemGroup>
 		<!-- App Icon -->
-		<MauiIcon Include="Resources\AppIcon\communityhubicon.png" />
+		<MauiIcon Include="Resources\AppIcon\communityhubicon.png" ForegroundFile="Resources\AppIcon\communityhubicon.png"/>
 		<!-- Splash Screen -->
 		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#512BD4" BaseSize="128,128" />
 
